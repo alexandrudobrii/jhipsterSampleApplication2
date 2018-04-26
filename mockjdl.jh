@@ -1,0 +1,35 @@
+
+entity Activity {
+	name String required
+}
+
+entity UserActivity {
+	level String
+}
+
+entity UserReview {
+	rating Integer
+    comment String
+}
+
+entity Recommendation {
+	accepted Boolean,
+    discarded Boolean
+}
+
+entity Location {
+	name String
+}
+
+entity RecommendedLocation {
+}
+
+relationship OneToMany {
+	User to UserActivity{user(name)}
+    Activity to UserActivity{activity(name)}
+    User{recc1} to Recommendation{user(name)}
+    User{recc2} to Recommendation{recommendedUser(name)}
+    Activity to Recommendation{activity(name)}
+    Recommendation to RecommendedLocation{recommandation}
+    Location to  RecommendedLocation{location}
+}
